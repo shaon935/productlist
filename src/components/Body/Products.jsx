@@ -1,5 +1,9 @@
 import shirtImage from "../../assets/products/shirt-2.png";
+import { useProduct } from "../../hooks";
 export default function Products() {
+  const { loading, error, productData } = useProduct();
+  console.log(productData, loading, error);
+  console.log("hello");
   return (
     <div>
       <div className="bg-white">
