@@ -1,4 +1,11 @@
+import { useState } from "react";
 export default function SearchFilter() {
+  const [sortOrder, setSortOrder] = useState("");
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const handleSort = (order) => {
+    setSortOrder(order);
+    setIsSortOpen(false); // Close dropdown after selecting
+  };
   return (
     <div className="mt-10">
       <div className="flex justify-between relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
@@ -11,6 +18,7 @@ export default function SearchFilter() {
                 id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
+                onClick={() => setIsSortOpen(!isSortOpen)}
               >
                 Sort
                 <svg
@@ -27,36 +35,37 @@ export default function SearchFilter() {
                 </svg>
               </button>
             </div>
-
-            <div
-              className="absolute z-10 mt-2 left-5 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="menu-button"
-              tabIndex="-1"
-            >
-              <div className="py-1" role="none">
-                <span
-                  className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-all"
-                  role="menuitem"
-                  tabIndex="-1"
-                  onClick="toggleDropdown()"
-                  id="menu-item-0"
-                >
-                  Low to High
-                </span>
-                <span
-                  href=""
-                  className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-all"
-                  role="menuitem"
-                  tabIndex="-1"
-                  onClick="toggleDropdown()"
-                  id="menu-item-0"
-                >
-                  High to Low
-                </span>
+            {isSortOpen && (
+              <div
+                className="absolute z-10 mt-2 left-5 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="menu-button"
+                tabIndex="-1"
+              >
+                <div className="py-1" role="none">
+                  <span
+                    className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-all"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="menu-item-0"
+                    onClick={() => handleSort("low-to-high")}
+                  >
+                    Low to High
+                  </span>
+                  <span
+                    href=""
+                    className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-all"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="menu-item-0"
+                    onClick={() => handleSort("high-to-low")}
+                  >
+                    High to Low
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           <div className="relative inline-block text-left">

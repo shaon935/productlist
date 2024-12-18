@@ -3,15 +3,18 @@ import Banner from "./components/Banner/Banner";
 import Body from "./components/Body/Body";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import ProductProvider from "./provider/ProductProvider";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Banner />
-      <Body />
-      <Footer />
-    </>
+    <ProductProvider>
+      <>
+        <Header />
+        <Banner />
+        <Body />
+        <Footer />
+      </>
+    </ProductProvider>
   );
 }
 

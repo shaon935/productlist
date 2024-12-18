@@ -6,7 +6,7 @@ const useProduct = () => {
     state: false,
     message: "",
   });
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({ state: false, message: "" });
 
   const fetchProductData = async () => {
     try {
@@ -28,7 +28,11 @@ const useProduct = () => {
       const updateProductData = data.map(({ rating, ...rest }) => rest);
       setProductData(updateProductData);
     } catch (err) {
-      setError(err);
+      const errorMessage = err.message || "An unexpected error occurred.";
+      setError({
+        state: true,
+        message: errorMessage,
+      });
     } finally {
       setLoading({
         ...loading,
@@ -48,9 +52,9 @@ const useProduct = () => {
   }, []);
 
   return {
-    productData,
-    error,
     loading,
+    error,
+    productData,
   };
 };
 
