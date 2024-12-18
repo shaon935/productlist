@@ -1,3 +1,7 @@
 import { createContext } from "react";
 const ProductContext = createContext("");
-export { ProductContext };
+const SortContext = createContext("");
+const FilterContext = createContext("");
+const SearchContext = createContext("");
+export { FilterContext, ProductContext, SearchContext, SortContext };
+

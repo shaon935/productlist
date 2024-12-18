@@ -1,5 +1,5 @@
 import Products from "./Products";
-import SearchFilter from "./SearchFilter";
+import SortSearchFilter from "./SortSearchFilter";
 import Title from "./Title";
 
 export default function Body() {
@@ -7,7 +7,7 @@ export default function Body() {
     <div className="pt-16 sm:pt-24 lg:pt-40">
       <Title />
       <div>
-        <SearchFilter />
+        <SortSearchFilter />
         <Products />
       </div>
     </div>
